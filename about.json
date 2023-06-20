@@ -1,0 +1,25 @@
+{
+  "name": "Monday Header",
+  "component": true,
+  "license_url": null,
+  "about_url": null,
+  "authors": "Bhanu Sharma",
+  "theme_version": null,
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {
+    "academy": "assets/academy.svg",
+    "arrow": "assets/arrow.svg",
+    "desktop-logo": "assets/desktop-logo.svg",
+    "docs": "assets/docs.svg",
+    "kb": "assets/kb.svg",
+    "mobile-logo": "assets/mobile-logo.svg",
+    "visit-monday-arrow": "assets/visit-monday-arrow.svg",
+    "yt": "assets/yt.svg"
+  },
+  "color_schemes": {
+  },
+  "modifiers": {
+  },
+  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
+}

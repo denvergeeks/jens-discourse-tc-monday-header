@@ -1,0 +1,170 @@
+<script>
+$ = jQuery.noConflict();
+let DisableScroll = {overflow: 'hidden'};
+
+$(document).ready(function () {
+
+    window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || 
+                               ( typeof window.performance != "undefined" && 
+                                    window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+          // Handle page restore.
+          console.log("innnnn");
+          window.scrollTo(0,0);
+          window.location.reload();
+        }
+      });
+
+    $('.menu-item-learning-resource').click(function () {
+            $('.menu-item-learning-resource ul').toggleClass('open')
+            $('.menu-item-learning-resource').toggleClass('active')
+            $('.menu-item-learning-resource .menu-arrow-icon').toggleClass('arrow-rotate')
+            $('.header-container.submenu-academy').toggleClass('menu-academy-hidden')
+
+    });
+    //toggle menu
+    $('.hamburger-container.hamburger-header').click(function () {
+        // window.scrollTo(0, 0);
+        if ($('body').css('overflow') != 'hidden') {
+            $("#menu-header").fadeIn(200);
+            $('body').css(DisableScroll);
+        } else {
+            $("#menu-header").fadeOut(200);
+            $('body').css({overflow: 'auto' });
+        }
+    });
+
+    let topBar = $('.hamburger li:nth-child(1)'), middleBar = $('.hamburger li:nth-child(2)'),
+        bottomBar = $('.hamburger li:nth-child(3)');
+
+    $('.hamburger-container.hamburger-header').on('click', function () {
+        if (middleBar.hasClass('rot-45deg')) {
+            topBar.removeClass('rot45deg');
+            middleBar.removeClass('rot-45deg');
+            bottomBar.removeClass('hidden');
+        } else {
+            bottomBar.addClass('hidden');
+            topBar.addClass('rot45deg');
+            middleBar.addClass('rot-45deg');
+        }
+    });
+
+    //close menu on window click
+    $(window).on('click', function (e) {
+        if ($($(e.target).parents('.menu-item-learning-resource'))[0] != $('.menu-item-learning-resource')[0] && $(e.target)[0] != $('.menu-item-learning-resource')[0]) {
+            if ($('.menu-item-learning-resource ul').hasClass('open')) {
+                    $('.menu-item-learning-resource ul').removeClass('open')
+                    $('.menu-item-learning-resource').removeClass('active')
+                    $('.menu-item-learning-resource .menu-arrow-icon').removeClass('arrow-rotate')
+            }
+        }
+    });
+
+    $('.hamburger-container.hamburger-academy').click(function () {
+        // window.scrollTo(0, 0);
+        if ($('body').css('overflow') != 'hidden') {
+            $("#menu-academy").fadeIn(200);
+            $('body').css(DisableScroll);
+        } else {
+            $("#menu-academy").fadeOut(200);
+            $('body').css({overflow: 'auto' });
+        }
+    });
+
+    let topBarAcademy = $('.hamburger-academy .hamburger li:nth-child(1)'),
+        middleBarAcademy = $('.hamburger-academy .hamburger li:nth-child(2)'),
+        bottomBarAcademy = $('.hamburger-academy .hamburger li:nth-child(3)');
+
+    $('.hamburger-container.hamburger-academy').on('click', function () {
+        if (middleBarAcademy.hasClass('rot-45deg')) {
+            topBarAcademy.removeClass('rot45deg');
+            middleBarAcademy.removeClass('rot-45deg');
+            bottomBarAcademy.removeClass('hidden');
+        } else {
+            bottomBarAcademy.addClass('hidden');
+            topBarAcademy.addClass('rot45deg');
+            middleBarAcademy.addClass('rot-45deg');
+        }
+    });
+
+    /*Header add scroll class*/
+
+    var lastScrollTop = 0;
+    $(window).scroll(function (event) {
+        var st = $(this).scrollTop(),
+            bd = $('body');
+        if (st > lastScrollTop) {
+            /*bd.addClass('scrolled-down');*/
+            bd.addClass('scrolled-start');
+            /*bd.removeClass('delay-scroll-up');
+
+            setTimeout(
+                function()
+                {
+                    bd.addClass('delay-scroll-down');
+                }, 200);*/
+
+            if (document.querySelector('.secondary-menu-wrap')) {
+                closeMenuDropdown();
+            }
+        } else {
+            /*bd.removeClass('scrolled-down');*/
+            bd.removeClass('scrolled-start');
+           /* bd.removeClass('delay-scroll-down');
+            setTimeout(
+                function()
+                {
+                    bd.addClass('delay-scroll-up');
+                }, 200);*/
+        }
+        lastScrollTop = st;
+    });
+
+    function closeMenuDropdown() {
+        document.querySelectorAll('.link-item-with-menu-component-wrapper').forEach((el) => {
+            el.classList.remove('active');
+            document.querySelector('body').classList.remove('menu-dropdown-open');
+        });
+    }
+
+    $(window).scroll(function () {
+        scrollDetect();
+    });
+
+    function scrollDetect() {
+        var scroll = $(window).scrollTop(),
+            bd = $('body');
+        if (scroll >= 120) {
+            bd.addClass('scrolled-down');
+            bd.removeClass('delay-scroll-up');
+
+            setTimeout(
+                function()
+                {
+                    bd.addClass('delay-scroll-down');
+                }, 200);
+           /* $(".basic-header-content-wrapper").addClass('with-shadow');*/
+        } else {
+            $('body').removeClass('scrolled-down');
+
+            bd.removeClass('delay-scroll-down');
+            setTimeout(
+                function()
+                {
+                    bd.addClass('delay-scroll-up');
+                }, 200);
+            /*$(".basic-header-content-wrapper").removeClass('with-shadow');*/
+        }
+    }
+
+    /*scrollDetect();*/
+
+    $('.header-search').on('click', function (e) {
+        e.preventDefault(e);
+        $(this).hide();
+        $('.search-login-section .search-bar').css('visibility', 'visible');
+        $('.search-login-section .search-bar form.search-form input.search-field').toggleClass("active").focus;
+    });
+})
+</script>
