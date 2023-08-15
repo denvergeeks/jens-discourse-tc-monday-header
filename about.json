@@ -13,7 +13,7 @@
     "desktop-logo": "assets/discourse-pub-logo.webp",
     "docs": "assets/docs.svg",
     "kb": "assets/kb.svg",
-    "mobile-logo": "assets/mobile-logo.svg",
+    "mobile-logo": "assets/discourse-pub-logo.webp",
     "visit-monday-arrow": "assets/visit-monday-arrow.svg",
     "yt": "assets/yt.svg"
   },
